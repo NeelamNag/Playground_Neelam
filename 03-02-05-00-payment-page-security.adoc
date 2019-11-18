@@ -90,23 +90,7 @@ form as ``request_signature`` field.
 
 An example of request signature generation is as follows:
 
-[source]
-----
-request_time_stamp              = '20190430123012'
-request_id                      = 'order-12345'
-merchant_account_id             = 'b19fb056-d8da-449b-ac85-cfbfd0558914'
-transaction_type                = 'purchase'
-requested_amount                = '1.01'
-requested_amount_currency       = 'USD'
-redirect_url                    = 'https://test.com'
-custom_css_url                  = 'https://test.com/custom.css'
-ip_address                      = '127.0.0.1'
-hyperlink_expiration_time_stamp = '2020-04-07T13:20:00+02:00'
-secret_key                      = 'efabf47b-e43b-4785-873f-1c5bc65b7cd2'
 
-
-Pre SHA-256 string
-20120430123012order-12345b19fb056-d8da-449b-ac85-cfbfd0558914purchase1.01USDhttps://test.comhttps://test.com/custom.css127.0.0.1efabf47b-e43b-4785-873f-1c5bc65b7cd2
 ----
 
 [#PP_Security_ResponseSignature]
@@ -158,21 +142,6 @@ $request_signature = hash('sha256', trim($request_time_stamp . $request_id . $me
 
 .C# / ASP.NET Example
 [source,csharp]
-----
-public static string GetSHA256(string text) {
-       byte[] hashValue;
-       byte[] message = Encoding.UTF8.GetBytes(text);
-
-       SHA256Managed hashString = new SHA256Managed();
-       string hex = "";
-
-       hashValue = hashString.ComputeHash(message);
-       foreach( byte x in hashValue)
-       {
-             hex += String.Format("{0:x2}", x);
-       }
-       return hex.Trim();
-}
 ----
 
 .Java Example
